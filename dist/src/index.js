@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HTTP_STATUSES = exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 exports.app = (0, express_1.default)();
-const port = 3010;
-const jsonBodeMiddleware = express_1.default.json(); //  Посмотреть где это
+const port = 3000;
+const jsonBodeMiddleware = express_1.default.json();
 exports.app.use(jsonBodeMiddleware);
 exports.HTTP_STATUSES = {
     OK_200: 200,
@@ -35,7 +35,7 @@ exports.app.get("/courses/:id", (req, res) => {
     const foundCourse = db.courses.find((course) => course.id === +req.params.id);
     if (!foundCourse) {
         res.sendStatus(exports.HTTP_STATUSES.NOT_FOUND_404);
-        return; // ???
+        return;
     }
     res.json(foundCourse);
 });
@@ -66,6 +66,7 @@ exports.app.put("/courses/:id", (req, res) => {
         return;
     }
     foundCourse.title = req.body.title;
+    res.sendStatus(exports.HTTP_STATUSES.NO_CONTENT_204);
     res.json(foundCourse);
 });
 exports.app.delete("/__test__/data", (req, res) => {
