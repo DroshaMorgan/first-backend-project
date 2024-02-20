@@ -1,6 +1,9 @@
 import request from "supertest";
 import { HTTP_STATUSES, app } from "../../src";
 
+let createdCourse1: any = null;
+let createdCourse2: any = null;
+
 describe("/course", () => {
   beforeAll(async () => {
     await request(app).delete("/__test__/data");
@@ -19,11 +22,8 @@ describe("/course", () => {
       .post("/courses")
       .send({ title: "" })
       .expect(HTTP_STATUSES.BAD_REQ_400);
-
-    // await request(app).post("/courses").expect(HTTP_STATUSES.OK_200, []);
   });
 
-  let createdCourse1: any = null;
   it("should create course with correct input data", async () => {
     const createResponse = await request(app)
       .post("/courses")
@@ -42,7 +42,6 @@ describe("/course", () => {
       .expect(HTTP_STATUSES.OK_200, [createdCourse1]);
   });
 
-  let createdCourse2: any = null;
   it("should create course with correct input data", async () => {
     const createResponse = await request(app)
       .post("/courses")

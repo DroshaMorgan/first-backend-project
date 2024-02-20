@@ -3,7 +3,7 @@ import express from "express";
 export const app = express();
 const port = 3000;
 
-const jsonBodeMiddleware = express.json(); //  Посмотреть где это
+const jsonBodeMiddleware = express.json();
 app.use(jsonBodeMiddleware);
 
 export const HTTP_STATUSES = {
@@ -41,7 +41,7 @@ app.get("/courses/:id", (req, res) => {
 
   if (!foundCourse) {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND_404);
-    return; // ???
+    return;
   }
   res.json(foundCourse);
 });
