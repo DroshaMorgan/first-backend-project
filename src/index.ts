@@ -83,6 +83,7 @@ app.put("/courses/:id", (req, res) => {
 
   foundCourse.title = req.body.title;
 
+  res.sendStatus(HTTP_STATUSES.NO_CONTENT_204);
   res.json(foundCourse);
 });
 
